@@ -1,0 +1,13 @@
+{
+  "name": "nexo-platform-demo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Plataforma ficticia de desarrollo con una CLI de demostración y portapapeles transparente.",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "start": "node scripts/serve.mjs",
+    "test": "node tests/platform.test.mjs"
+  }
+}

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101715">
+  <meta name="description" content="Nexo: un laboratorio local para explorar una plataforma de desarrollo y su instalación, paso a paso.">
+  <title>Nexo — Un espacio para construir</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+  <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+    <symbol id="i-terminal" viewBox="0 0 24 24"><path d="m5 7 5 5-5 5m8 0h6"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="m12 3 9 5v9l-9 5-9-5V8l9-5Zm0 10 9-5M3 8l9 5m0 0v9M7.5 5.5l9 5"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 5v15M3 4h5a4 4 0 0 1 4 2 4 4 0 0 1 4-2h5v15h-5a5 5 0 0 0-4 2 5 5 0 0 0-4-2H3Z"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3"/><circle cx="16" cy="17" r="3"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M4 15v5h16v-5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M15 8V4H4v11h4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 4 12 8-12 8Z"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 6-6 6 6 6m8-12 6 6-6 6M14 3l-4 18"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 3 6v6c0 5 9 9 9 9s9-4 9-9V6l-9-3Z"/><path d="m8 12 3 3 5-6"/></symbol>
+  </defs></svg>
+
+  <aside class="sidebar" id="sidebar" aria-label="Navegación principal">
+    <a href="#inicio" class="brand" aria-label="Nexo, inicio"><span class="brand-mark">n<span>•</span></span><span>nexo<span class="brand-dot">.</span></span></a>
+    <div class="workspace"><span class="workspace-icon"><svg><use href="#i-code"/></svg></span><div>Mi espacio<span>Laboratorio local</span></div><span class="workspace-chevron">⌄</span></div>
+    <p class="nav-label">WORKSPACE</p>
+    <nav>
+      <a class="nav-item active" href="#inicio" data-nav="inicio" aria-current="page"><svg><use href="#i-grid"/></svg>Vista general</a>
+      <a class="nav-item" href="#instalacion" data-nav="instalacion"><svg><use href="#i-download"/></svg>Instalación<span class="nav-tag">CLI</span></a>
+      <button class="nav-item" data-open="playground"><svg><use href="#i-terminal"/></svg>Playground</button>
+    </nav>
+    <p class="nav-label resources-label">RECURSOS</p>
+    <nav>
+      <button class="nav-item" data-open="docs"><svg><use href="#i-book"/></svg>Guía rápida</button>
+      <button class="nav-item" data-open="settings"><svg><use href="#i-settings"/></svg>Preferencias</button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="local-card"><span class="tiny-code">&lt;/&gt;</span><h3>Tu código. Tu espacio.</h3><p>Explora la demo a tu ritmo.<br>Todo empieza en local.</p><button data-open="docs">Conocer Nexo <span>+</span></button></div>
+      <div class="profile"><span class="avatar">D</span><div>Developer<span>Espacio de demostración</span></div><span class="profile-version">v0.1</span></div>
+    </div>
+  </aside>
+  <button class="sidebar-scrim" aria-label="Cerrar navegación" hidden></button>
+
+  <div class="page-shell">
+    <header class="topbar">
+      <button class="icon-button mobile-menu" aria-label="Abrir navegación" aria-controls="sidebar" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+      <div class="breadcrumbs"><span>Workspace</span><span class="slash">/</span><span id="breadcrumb-current">Vista general</span></div>
+      <div class="topbar-actions"><button class="search-trigger" data-open="search"><svg><use href="#i-search"/></svg><span>Buscar en la guía</span><kbd>Ctrl K</kbd></button><span class="demo-badge">DEMO LOCAL</span></div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="inicio" aria-labelledby="hero-title">
+        <div class="hero-copy"><div class="eyebrow"><span class="eyebrow-line"></span>UN ESPACIO PARA CONSTRUIR</div><h1 id="hero-title">Menos fricción.<br><span>Más código.</span></h1><p>Del primer comando a tu próxima idea.<br>Prepara tu espacio y descubre Nexo, paso a paso.</p>
+          <div class="hero-actions"><a class="button primary" href="downloads/nexo-demo-0.1.0.zip" download data-download><svg><use href="#i-download"/></svg>Descargar Nexo <span class="button-version">v0.1</span></a><a class="button secondary" href="#instalacion">Ver instalación</a></div>
+          <div class="hero-meta"><span><svg><use href="#i-check"/></svg>Sin cuenta</span><span><svg><use href="#i-check"/></svg>CLI portable</span><span><svg><use href="#i-check"/></svg>Código incluido</span></div>
+        </div>
+        <div class="hero-visual" aria-label="Vista de ejemplo de un proyecto Nexo">
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <div class="editor-window"><div class="window-top"><span class="window-dots"><i></i><i></i><i></i></span><span>hello-nexo</span><svg><use href="#i-code"/></svg></div>
+            <div class="editor-tabs" role="tablist" aria-label="Vista de ejemplo"><button id="editor-tab" role="tab" aria-selected="true" aria-controls="editor-code" data-editor="code"><span class="ts-label">TS</span>nexo.config.ts</button><button id="terminal-tab" role="tab" aria-selected="false" aria-controls="editor-terminal" tabindex="-1" data-editor="terminal"><svg><use href="#i-terminal"/></svg>terminal</button></div>
+            <div class="editor-content" id="editor-code" role="tabpanel" aria-labelledby="editor-tab"><div class="code-line"><span>1</span><code><b>const</b> workspace = {</code></div><div class="code-line"><span>2</span><code>  name: <em>'mi-proxima-idea'</em>,</code></div><div class="code-line"><span>3</span><code>  environment: <em>'local'</em>,</code></div><div class="code-line"><span>4</span><code>  possibilities: <strong>Infinity</strong>,</code></div><div class="code-line"><span>5</span><code>};</code></div><div class="code-line"><span>6</span><code> </code></div><div class="code-line"><span>7</span><code class="comment">// Las buenas ideas empiezan aquí.</code></div><div class="code-line"><span>8</span><code><b>export default</b> workspace;<span class="cursor"></span></code></div></div>
+            <div class="editor-content terminal-preview" id="editor-terminal" role="tabpanel" aria-labelledby="terminal-tab" hidden><p><span class="mint">$</span> node nexo.mjs demo</p><p class="muted">NEXO · ejemplo de salida</p><p><span class="mint">✓</span> Cargando proyecto de ejemplo</p><p><span class="mint">✓</span> Preparando vista previa</p><p class="mint">Tu siguiente idea empieza aquí.</p></div>
+            <div class="editor-footer"><span><span class="branch-symbol">⑂</span> main</span><span>TypeScript <span class="footer-divider">UTF-8</span></span></div>
+          </div>
+          <div class="floating-label"><span class="floating-icon"><svg><use href="#i-terminal"/></svg></span><div>El comienzo de algo bueno<span>Un comando a la vez.</span></div><span class="floating-spark">✦</span></div>
+        </div>
+      </section>
+
+      <div class="section-heading" id="instalacion"><div><span class="section-kicker">QUICK START</span><h2>Tu entorno, listo para explorar.</h2><p>Descarga la demo y recorre los cuatro pasos.</p></div><span class="outline-badge"><svg><use href="#i-box"/></svg>Node.js 18+</span></div>
+      <section class="setup-layout" aria-label="Guía de instalación">
+        <div class="setup-card">
+          <div class="setup-toolbar"><div class="os-tabs" role="tablist" aria-label="Sistema operativo"><button id="os-windows" role="tab" aria-selected="true" aria-controls="setup-content" data-os="windows"><span>⊞</span>Windows</button><button id="os-macos" role="tab" aria-selected="false" aria-controls="setup-content" tabindex="-1" data-os="macos">macOS</button><button id="os-linux" role="tab" aria-selected="false" aria-controls="setup-content" tabindex="-1" data-os="linux">Linux</button></div><span class="version-label">v0.1.0</span></div>
+          <div id="setup-content" role="tabpanel" aria-labelledby="os-windows" class="setup-content">
+            <div class="step" data-step="0"><button class="step-heading" aria-expanded="true" aria-controls="step-content-0"><span class="step-number">1</span><span>Descarga el kit de inicio<small>Una pequeña herramienta. Un gran comienzo.</small></span><span class="step-chevron">⌄</span></button><div class="step-body" id="step-content-0"><p>El ZIP incluye la CLI de demostración y su código fuente. Funciona con Node.js y se ejecuta desde su propia carpeta.</p><a class="download-card" href="downloads/nexo-demo-0.1.0.zip" download data-download><span class="package-icon"><svg><use href="#i-box"/></svg></span><span><strong>nexo-demo-0.1.0.zip</strong><small>Windows, macOS y Linux · <span id="package-size">1.4 KB</span></small></span><svg><use href="#i-download"/></svg></a><button class="text-button" data-complete="0">Ya lo descargué <svg><use href="#i-check"/></svg></button></div></div>
+            <div class="step" data-step="1"><button class="step-heading" aria-expanded="false" aria-controls="step-content-1"><span class="step-number">2</span><span>Abre tu espacio<small>Extrae el ZIP y comprueba la versión.</small></span><span class="step-chevron">⌄</span></button><div class="step-body" id="step-content-1" hidden><p id="extract-instruction">Haz clic derecho en el ZIP, selecciona «Extraer todo» y abre PowerShell dentro de la carpeta extraída.</p><div class="command-block"><div class="command-label"><span class="shell-name">POWERSHELL</span><button class="copy-button" data-copy-target="command-version"><svg><use href="#i-copy"/></svg><span>Copiar</span></button></div><pre><code id="command-version">node nexo.mjs --version</code></pre></div><p class="step-note">Resultado esperado: <code>nexo 0.1.0</code>. Requiere Node.js 18 o posterior en tu equipo.</p><button class="text-button" data-complete="1">Versión comprobada <svg><use href="#i-check"/></svg></button></div></div>
+            <div class="step" data-step="2"><button class="step-heading" aria-expanded="false" aria-controls="step-content-2"><span class="step-number">3</span><span>Comprueba el entorno<small>Un diagnóstico sencillo de tu runtime.</small></span><span class="step-chevron">⌄</span></button><div class="step-body" id="step-content-2" hidden><p>Este comando muestra la versión de Node.js, tu sistema operativo y la arquitectura. La salida se queda en tu terminal.</p><div class="command-block"><div class="command-label"><span class="shell-name">POWERSHELL</span><button class="copy-button" data-copy-target="command-doctor"><svg><use href="#i-copy"/></svg><span>Copiar</span></button></div><pre><code id="command-doctor">node nexo.mjs doctor</code></pre></div><button class="text-button" data-complete="2">Entorno comprobado <svg><use href="#i-check"/></svg></button></div></div>
+            <div class="step" data-step="3"><button class="step-heading" aria-expanded="false" aria-controls="step-content-3"><span class="step-number">4</span><span>Ejecuta tu primera demo<small>Dale vida a la terminal.</small></span><span class="step-chevron">⌄</span></button><div class="step-body" id="step-content-3" hidden><p>Ejecuta una vista de proyecto de ejemplo. La CLI imprime la demo y termina; no crea archivos ni instala dependencias.</p><div class="command-block"><div class="command-label"><span class="shell-name">POWERSHELL</span><button class="copy-button" data-copy-target="command-demo"><svg><use href="#i-copy"/></svg><span>Copiar</span></button></div><pre><code id="command-demo">node nexo.mjs demo</code></pre></div><button class="text-button" data-complete="3">Demo completada <svg><use href="#i-check"/></svg></button></div></div>
+          </div>
+          <div class="setup-footer"><svg><use href="#i-shield"/></svg><span>Cada botón copia exactamente el comando que ves.</span></div>
+        </div>
+        <aside class="setup-aside" aria-label="Tu progreso y ayuda">
+          <div class="progress-card"><div class="card-eyebrow">TU RECORRIDO <svg><use href="#i-terminal"/></svg></div><div class="progress-title"><h3>Vamos paso a paso.</h3><span id="progress-count">0/4</span></div><div class="progress-track" role="progressbar" aria-label="Pasos confirmados" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0"><span id="progress-fill"></span></div><p id="progress-description">Marca cada paso cuando lo hayas completado en tu equipo.</p><div class="progress-bottom"><span>Progreso guardado en este navegador</span><button id="reset-progress">Reiniciar</button></div></div>
+          <div class="try-card"><span class="try-icon"><svg><use href="#i-code"/></svg></span><h3>Primero, prueba una idea.</h3><p>Conoce la salida de la CLI en el playground, directamente aquí.</p><button class="button secondary" data-open="playground"><svg><use href="#i-play"/></svg>Abrir playground</button><small>Simulación interactiva en el navegador</small></div>
+          <button class="help-link" data-open="docs"><svg><use href="#i-book"/></svg><span>¿Tu primer encuentro con una CLI?<small>Tenemos una guía para eso.</small></span><span>+</span></button>
+        </aside>
+      </section>
+
+      <section class="principles" aria-label="El enfoque de Nexo"><article><span class="principle-icon"><svg><use href="#i-terminal"/></svg></span><div><h3>Desde tu terminal</h3><p>Comandos cortos y una salida que se entiende.</p></div></article><article><span class="principle-icon"><svg><use href="#i-code"/></svg></span><div><h3>Abierto para explorar</h3><p>Lee el código de la demo y hazlo tuyo.</p></div></article><article><span class="principle-icon"><svg><use href="#i-box"/></svg></span><div><h3>Ligero por naturaleza</h3><p>Un solo archivo. Cero paquetes adicionales.</p></div></article></section>
+      <footer class="page-footer"><span class="footer-brand">nexo<span>.</span> <span class="footer-message">Hecho para el siguiente comienzo.</span></span><span>Plataforma ficticia · demo local <span class="footer-divider">v0.1.0</span></span></footer>
+    </main>
+  </div>
+
+  <dialog id="dialog-playground" aria-labelledby="playground-title"><div class="dialog-heading"><div><span class="section-kicker">PRUEBA SIN INSTALAR</span><h2 id="playground-title">Tu pequeña terminal.</h2></div><button class="icon-button" data-close aria-label="Cerrar playground"><svg><use href="#i-close"/></svg></button></div><p class="dialog-description">Simulación: estos ejemplos no ejecutan comandos en tu equipo.</p><div class="playground-options"><button class="example-option active" data-example="demo" aria-pressed="true">Demo</button><button class="example-option" data-example="doctor" aria-pressed="false">Diagnóstico</button><button class="example-option" data-example="help" aria-pressed="false">Ayuda</button></div><div class="playground-screen"><div class="playground-prompt"><span>$</span><code id="playground-command">node nexo.mjs demo</code></div><pre id="playground-output" aria-live="polite">Tu terminal está lista. Ejecuta un ejemplo para empezar.</pre></div><div class="dialog-actions"><span class="muted">Salida ilustrativa · sin conexión</span><button id="run-example" class="button primary"><svg><use href="#i-play"/></svg>Ejecutar ejemplo</button></div></dialog>
+
+  <dialog id="dialog-docs" aria-labelledby="docs-title"><div class="dialog-heading"><div><span class="section-kicker">GUÍA RÁPIDA</span><h2 id="docs-title">Un buen lugar para empezar.</h2></div><button class="icon-button" data-close aria-label="Cerrar guía"><svg><use href="#i-close"/></svg></button></div><div class="docs-content"><p>Nexo es una plataforma ficticia con una CLI funcional de demostración. El programa incluido imprime información y ejemplos en la terminal.</p><details open><summary>¿Qué necesito para usar la demo?</summary><p>Node.js 18 o posterior. Descarga el ZIP, extrae sus archivos y abre una terminal dentro de la carpeta que contiene <code>nexo.mjs</code>.</p></details><details><summary>¿Qué es una CLI?</summary><p>Es un programa que utilizas escribiendo comandos en una terminal. En esta demo, <code>node</code> ejecuta el archivo <code>nexo.mjs</code> y el último argumento elige la acción.</p></details><details><summary>¿Qué contiene la descarga?</summary><p>El código fuente <code>nexo.mjs</code> y un archivo <code>LEEME.txt</code>. No necesita paquetes adicionales, permisos de administrador ni una cuenta.</p></details><details><summary>¿Cómo funciona el botón Copiar?</summary><p>Copia el texto exacto del bloque visible. Si el navegador no permite copiar, selecciona el comando y usa la función de copia de tu sistema. Puedes revisar el texto pegándolo primero en un editor.</p></details><details><summary>La terminal dice que no encuentra «node».</summary><p>Comprueba que Node.js esté instalado y disponible en tu terminal. Puedes usar el playground para explorar la salida de ejemplo sin instalar nada.</p></details><details><summary>¿Cómo elimino la demo?</summary><p>Elimina la carpeta extraída. La CLI no modifica la configuración del sistema. El progreso de la guía se puede reiniciar desde Preferencias.</p></details></div><div class="dialog-actions"><span class="muted">Todo el código está incluido.</span><a class="button secondary" href="downloads/nexo.mjs" download><svg><use href="#i-code"/></svg>Ver código fuente</a></div></dialog>
+
+  <dialog id="dialog-settings" aria-labelledby="settings-title"><div class="dialog-heading"><div><span class="section-kicker">HAZLO TUYO</span><h2 id="settings-title">Preferencias del espacio.</h2></div><button class="icon-button" data-close aria-label="Cerrar preferencias"><svg><use href="#i-close"/></svg></button></div><div class="settings-content"><label class="setting-row"><span>Ajustar líneas de código<small>Mostrar comandos largos en varias líneas.</small></span><input type="checkbox" id="wrap-code" checked></label><label class="setting-row"><span>Reducir movimiento<small>Desactivar animaciones y desplazamiento suave.</small></span><input type="checkbox" id="reduce-motion"></label><div class="setting-row"><span>Portapapeles transparente<small>El contenido copiado coincide con el bloque visible.</small></span><span class="setting-badge">Siempre activo</span></div><div class="setting-row"><span>Progreso de instalación<small>Borrar las confirmaciones de este navegador.</small></span><button class="button secondary small" id="settings-reset">Reiniciar</button></div></div></dialog>
+
+  <dialog id="dialog-search" class="search-dialog" aria-labelledby="search-title"><div class="search-input-row"><svg><use href="#i-search"/></svg><label class="sr-only" id="search-title" for="search-input">Buscar en Nexo</label><input id="search-input" type="search" placeholder="Busca instalación, comandos, ayuda…" autocomplete="off"><button class="icon-button" data-close aria-label="Cerrar búsqueda"><svg><use href="#i-close"/></svg></button></div><div id="search-results" class="search-results"></div><p class="search-hint">Busca en la guía local de Nexo.</p></dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden><svg><use href="#i-check"/></svg><span></span></div>
+</body>
+</html>
