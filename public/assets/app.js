@@ -28,14 +28,14 @@ function updateProgress() {
   $('#progress-fill').style.width = `${count * 25}%`;
   $('.progress-track').setAttribute('aria-valuenow', count);
   $('#progress-description').textContent = count === 4
-    ? '¡Recorrido completo! Has confirmado los cuatro pasos de la demo.'
-    : 'Marca cada paso cuando lo hayas completado en tu equipo.';
+    ? 'All done! You have confirmed all four demo steps.'
+    : 'Mark each step after completing it on your computer.';
   $$('.step').forEach((step, index) => {
     const done = state.completed.has(index);
     step.classList.toggle('complete', done);
     const number = $('.step-number', step);
     number.textContent = done ? '✓' : String(index + 1);
-    number.setAttribute('aria-label', done ? `Paso ${index + 1} completado` : `Paso ${index + 1}`);
+    number.setAttribute('aria-label', done ? `Step ${index + 1} completed` : `Step ${index + 1}`);
   });
 }
 function openStep(index) {
@@ -46,14 +46,14 @@ function openStep(index) {
 }
 function resetProgress() {
   state.completed.clear(); save(); updateProgress(); openStep(0);
-  toast('Progreso reiniciado. Puedes comenzar de nuevo.');
+  toast('Progress reset. You can start again.');
 }
 function setOS(os) {
   state.os = os;
   const instructions = {
-    windows: 'Haz clic derecho en el ZIP, selecciona «Extraer todo» y abre PowerShell dentro de la carpeta extraída que contiene nexo.mjs.',
-    macos: 'Haz doble clic en el ZIP para extraerlo. Abre Terminal dentro de la carpeta extraída que contiene nexo.mjs.',
-    linux: 'Extrae el ZIP con tu gestor de archivos. Abre una terminal dentro de la carpeta extraída que contiene nexo.mjs.',
+    windows: 'Right-click the ZIP, select “Extract All,” and open PowerShell in the extracted folder containing nexo.mjs.',
+    macos: 'Double-click the ZIP to extract it. Open Terminal in the extracted folder containing nexo.mjs.',
+    linux: 'Extract the ZIP with your file manager. Open a terminal in the extracted folder containing nexo.mjs.',
   };
   const shells = { windows: 'POWERSHELL', macos: 'ZSH', linux: 'BASH' };
   $$('[data-os]').forEach(button => {
@@ -95,25 +95,25 @@ async function copyCommand(button) {
   try {
     if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
     await navigator.clipboard.writeText(text);
-    $('span', button).textContent = 'Copiado';
-    toast('Comando visible copiado al portapapeles.');
-    setTimeout(() => { $('span', button).textContent = 'Copiar'; }, 1800);
+    $('span', button).textContent = 'Copied';
+    toast('Visible command copied to the clipboard.');
+    setTimeout(() => { $('span', button).textContent = 'Copy'; }, 1800);
   } catch {
     const selection = window.getSelection();
     const range = document.createRange();
     range.selectNodeContents(target);
     selection.removeAllRanges();
     selection.addRange(range);
-    toast('Seleccionamos el comando. Usa Ctrl+C o ⌘C para copiarlo.');
+    toast('Command selected. Press Ctrl+C or ⌘C to copy.');
   } finally {
     button.disabled = false;
   }
 }
 
 const examples = {
-  demo: { command: 'node nexo.mjs demo', output: 'NEXO · proyecto de ejemplo\n\n✓ Cargando proyecto de ejemplo\n✓ Preparando vista previa\n\nhello-nexo/\n  src/\n    index.ts\n  nexo.config.ts\n\nTu siguiente idea empieza aquí.\n\nEjemplo ilustrativo. No se han creado archivos.' },
-  doctor: { command: 'node nexo.mjs doctor', output: 'NEXO · diagnóstico de ejemplo\n\n✓ Node.js: versión compatible (ejemplo)\n✓ Sistema: plataforma de ejemplo\n✓ Arquitectura: arquitectura de ejemplo\n\nLa CLI descargada muestra los valores reales\nde tu equipo, únicamente en tu terminal.' },
-  help: { command: 'node nexo.mjs --help', output: 'NEXO 0.1.0\n\nUso: node nexo.mjs <comando>\n\n  --version    Mostrar la versión\n  doctor       Mostrar el entorno de Node.js\n  demo         Imprimir un proyecto de ejemplo\n  --help       Mostrar esta ayuda\n\nSin conexión de red ni cambios en archivos.' },
+  demo: { command: 'node nexo.mjs demo', output: 'NEXO · sample project\n\n✓ Loading sample project\n✓ Preparing preview\n\nhello-nexo/\n  src/\n    index.ts\n  nexo.config.ts\n\nYour next idea starts here.\n\nIllustrative example. No files were created.' },
+  doctor: { command: 'node nexo.mjs doctor', output: 'NEXO · sample diagnostics\n\n✓ Node.js: compatible version (example)\n✓ System: sample platform\n✓ Architecture: sample architecture\n\nThe downloaded CLI shows your actual system details\nonly in your terminal.' },
+  help: { command: 'node nexo.mjs --help', output: 'NEXO 0.1.0\n\nUsage: node nexo.mjs <command>\n\n  --version    Show the version\n  doctor       Show the Node.js environment\n  demo         Print a sample project\n  --help       Show this help\n\nNo network connections or file changes.' },
 };
 let example = 'demo';
 function selectExample(name) {
@@ -124,16 +124,16 @@ function selectExample(name) {
     button.setAttribute('aria-pressed', String(active));
   });
   $('#playground-command').textContent = examples[name].command;
-  $('#playground-output').textContent = 'Tu terminal está lista. Ejecuta un ejemplo para empezar.';
+  $('#playground-output').textContent = 'Your terminal is ready. Run an example to get started.';
 }
 const searchItems = [
-  { title: 'Descargar Nexo', description: 'Kit portable y código fuente de la demo', keywords: 'descarga zip programa cli', step: 0 },
-  { title: 'Instalar y comprobar la versión', description: 'Extraer el ZIP y abrir tu terminal', keywords: 'instalacion instalar node windows macos linux version', step: 1 },
-  { title: 'Diagnosticar el entorno', description: 'Conocer el comando doctor', keywords: 'doctor diagnostico entorno node', step: 2 },
-  { title: 'Ejecutar la demo', description: 'Tu primer comando de Nexo', keywords: 'demo ejecutar proyecto comando', step: 3 },
-  { title: 'Playground', description: 'Probar ejemplos dentro del navegador', keywords: 'simulacion terminal ejemplo', dialog: 'playground' },
-  { title: 'Guía rápida', description: 'Ayuda, requisitos y solución de problemas', keywords: 'ayuda documentacion requisitos error desinstalar', dialog: 'docs' },
-  { title: 'Preferencias', description: 'Ajuste de líneas, movimiento y portapapeles', keywords: 'configuracion clipboard copia copiar portapapeles progreso', dialog: 'settings' },
+  { title: 'Download Nexo', description: 'Portable kit and demo source code', keywords: 'download zip program cli source', step: 0 },
+  { title: 'Set up and check the version', description: 'Extract the ZIP and open your terminal', keywords: 'installation install setup node windows macos linux version', step: 1 },
+  { title: 'Check your environment', description: 'Explore the doctor command', keywords: 'doctor diagnostics environment node', step: 2 },
+  { title: 'Run the demo', description: 'Your first Nexo command', keywords: 'demo run project command', step: 3 },
+  { title: 'Playground', description: 'Try examples in your browser', keywords: 'simulation terminal example', dialog: 'playground' },
+  { title: 'Quick guide', description: 'Help, requirements, and troubleshooting', keywords: 'help documentation requirements error uninstall', dialog: 'docs' },
+  { title: 'Preferences', description: 'Line wrapping, motion, and clipboard', keywords: 'settings preferences clipboard copy progress', dialog: 'settings' },
 ];
 const normalized = text => text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 function renderSearch(query) {
@@ -143,7 +143,7 @@ function renderSearch(query) {
   const results = searchItems.filter(item => words.every(word => normalized(`${item.title} ${item.description} ${item.keywords}`).includes(word)));
   if (!results.length) {
     const message = document.createElement('p'); message.className = 'search-empty';
-    message.textContent = 'No hay resultados. Prueba «instalación», «demo» o «ayuda».';
+    message.textContent = 'No results. Try “setup,” “demo,” or “help.”';
     root.append(message);
   }
   results.forEach(item => {
@@ -172,7 +172,7 @@ document.addEventListener('click', event => {
     state.completed.add(step); save(); updateProgress();
     const next = [0, 1, 2, 3].find(n => !state.completed.has(n));
     if (next !== undefined) { openStep(next); $(`.step[data-step="${next}"] .step-heading`).focus({ preventScroll: true }); }
-    else toast('¡Recorrido completo! Tu demo está lista para explorar.');
+    else toast('All done! Your demo is ready to explore.');
   }
   if (button.matches('.step-heading')) {
     const step = Number(button.closest('[data-step]').dataset.step);
@@ -186,7 +186,7 @@ document.addEventListener('click', event => {
       $(`#editor-${tab.dataset.editor}`).hidden = !active;
     });
   }
-  if (button.hasAttribute('data-download')) toast('Descarga solicitada. Extrae el ZIP para empezar.');
+  if (button.hasAttribute('data-download')) toast('Download requested. Extract the ZIP to get started.');
   if (button.matches('a[href^="#"]')) closeSidebar();
 });
 
@@ -226,7 +226,7 @@ function updateNavigation() {
     link.classList.toggle('active', active);
     if (active) link.setAttribute('aria-current', 'page'); else link.removeAttribute('aria-current');
   });
-  $('#breadcrumb-current').textContent = current === 'instalacion' ? 'Instalación' : 'Vista general';
+  $('#breadcrumb-current').textContent = current === 'instalacion' ? 'Installation' : 'Overview';
 }
 window.addEventListener('hashchange', updateNavigation);
 applySettings(); setOS(state.os); updateProgress(); updateNavigation();

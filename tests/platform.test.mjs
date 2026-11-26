@@ -29,9 +29,9 @@ test('CLI version, diagnosis, demo, help and unknown-command behavior', () => {
   const commands = [
     ['--version', 'nexo 0.1.0', 0],
     ['doctor', process.platform, 0],
-    ['demo', 'No se han creado archivos.', 0],
-    ['--help', 'Uso: node nexo.mjs', 0],
-    ['unknown', 'Comando desconocido', 1],
+    ['demo', 'No files were created.', 0],
+    ['--help', 'Usage: node nexo.mjs', 0],
+    ['unknown', 'Unknown command', 1],
   ];
   for (const [command, expected, status] of commands) {
     const output = [];
@@ -48,7 +48,7 @@ test('CLI version, diagnosis, demo, help and unknown-command behavior', () => {
 function clipboardHarness({ text = 'node nexo.mjs doctor', hidden = false, reject = false } = {}) {
   const writes = [], notifications = [], selections = [];
   const target = { textContent: text, getClientRects: () => hidden ? [] : [{}] };
-  const label = { textContent: 'Copiar' };
+  const label = { textContent: 'Copy' };
   const button = { dataset: { copyTarget: 'command-doctor' }, disabled: false };
   const context = {
     document: { getElementById: () => target, createRange: () => ({ selectNodeContents: node => selections.push(node) }) },

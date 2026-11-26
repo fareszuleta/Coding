@@ -13,12 +13,12 @@ const server = createServer(async (request, response) => {
     const file = resolve(root, `.${pathname === '/' ? '/index.html' : pathname}`);
     if (!file.startsWith(resolve(root) + sep)) { response.writeHead(403).end(); return; }
     const info = await stat(file);
-    if (!info.isFile()) { response.writeHead(404).end('No encontrado'); return; }
+    if (!info.isFile()) { response.writeHead(404).end('Not found'); return; }
     const headers = { 'Content-Type': mime[extname(file)] || 'application/octet-stream', 'Content-Length': info.size, 'X-Content-Type-Options': 'nosniff', 'Cache-Control': 'no-store' };
     if (extname(file) === '.zip') headers['Content-Disposition'] = 'attachment';
     response.writeHead(200, headers);
     response.end(request.method === 'HEAD' ? undefined : await readFile(file));
-  } catch { response.writeHead(404).end('No encontrado'); }
+  } catch { response.writeHead(404).end('Not found'); }
 });
 server.on('error', error => { console.error(error.message); process.exitCode = 1; });
 server.listen(port, '127.0.0.1', () => console.log(`Local: http://127.0.0.1:${port}`));

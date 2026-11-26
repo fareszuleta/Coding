@@ -8,4 +8,4 @@ for (const file of ['index.html', 'assets/style.css', 'assets/app.js', 'download
 await rm(destination, { recursive: true, force: true });
 await mkdir(destination, { recursive: true });
 await cp(source, destination, { recursive: true });
-console.log('Nexo: sitio estático preparado en dist/.');
+console.log('Nexo: static site ready in dist/.');

@@ -4,15 +4,15 @@ const version = '0.1.0';
 const command = process.argv[2] || '--help';
 const help = `NEXO ${version}
 
-Uso: node nexo.mjs <comando>
+Usage: node nexo.mjs <command>
 
-  --version    Mostrar la versión
-  doctor       Mostrar el entorno de Node.js
-  demo         Imprimir un proyecto de ejemplo
-  --help       Mostrar esta ayuda
+  --version    Show the version
+  doctor       Show the Node.js environment
+  demo         Print a sample project
+  --help       Show this help
 
-Esta CLI de demostración solo imprime texto en la terminal.
-No instala dependencias, crea archivos ni realiza conexiones de red.`;
+This demo CLI only prints text in your terminal.
+It does not install dependencies, create files, or make network connections.`;
 
 if (command === '--version' || command === '-v') {
   console.log(`nexo ${version}`);
@@ -20,28 +20,28 @@ if (command === '--version' || command === '-v') {
   console.log(help);
 } else if (command === 'doctor') {
   const compatible = Number(process.versions.node.split('.')[0]) >= 18;
-  console.log('NEXO · diagnóstico local\n');
+  console.log('NEXO · local diagnostics\n');
   console.log(`${compatible ? '✓' : '!'} Node.js: ${process.versions.node}`);
-  console.log(`✓ Sistema: ${process.platform}`);
-  console.log(`✓ Arquitectura: ${process.arch}`);
-  console.log(compatible ? '\nEntorno compatible con esta demo.' : '\nEsta demo requiere Node.js 18 o posterior.');
-  console.log('La información se muestra únicamente en esta terminal.');
+  console.log(`✓ System: ${process.platform}`);
+  console.log(`✓ Architecture: ${process.arch}`);
+  console.log(compatible ? '\nYour environment is compatible with this demo.' : '\nThis demo requires Node.js 18 or later.');
+  console.log('This information is displayed only in this terminal.');
   if (!compatible) process.exitCode = 1;
 } else if (command === 'demo') {
-  console.log(`NEXO · proyecto de ejemplo
+  console.log(`NEXO · sample project
 
-✓ Cargando proyecto de ejemplo
-✓ Preparando vista previa
+✓ Loading sample project
+✓ Preparing preview
 
 hello-nexo/
   src/
     index.ts
   nexo.config.ts
 
-Tu siguiente idea empieza aquí.
+Your next idea starts here.
 
-Ejemplo ilustrativo. No se han creado archivos.`);
+Illustrative example. No files were created.`);
 } else {
-  console.error(`Comando desconocido: ${command}\n\n${help}`);
+  console.error(`Unknown command: ${command}\n\n${help}`);
   process.exitCode = 1;
 }

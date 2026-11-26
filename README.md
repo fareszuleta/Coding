@@ -1,62 +1,63 @@
 # Nexo · Coding
 
-Plataforma de desarrollo ficticia, en español, preparada para usarse en local
-o desplegarse como sitio estático en Render.
+A fictional development platform in English, ready to run locally or deploy
+as a static site on Render.
 
-- Interfaz con estética de editor de código y diseño responsive.
-- Guía de cuatro pasos para Windows, macOS y Linux.
-- Descarga de una CLI portable de demostración, con su código fuente.
-- Playground de ejemplos, búsqueda local, preferencias y progreso guardado.
-- Los botones de copia usan exactamente el texto del comando visible.
+- Responsive interface inspired by a code editor.
+- Four-step setup guide for Windows, macOS, and Linux.
+- Downloadable portable demo CLI with source code.
+- Example playground, local search, preferences, and saved progress.
+- Copy buttons always copy the exact command shown on screen.
 
-## Ejecutar en local
+## Run locally
 
-Requiere Node.js 18 o posterior. No hay dependencias que instalar.
+Requires Node.js 18 or later. There are no dependencies to install.
 
 ```sh
 npm start
 ```
 
-Abre <http://127.0.0.1:4173>. También puedes abrir `public/index.html`
-directamente. Si la copia automática no está disponible, el sitio selecciona
-el comando para copiarlo manualmente.
+Open <http://127.0.0.1:4173>. You can also open `public/index.html` directly.
+If automatic copying is unavailable, the page selects the command so you
+can copy it manually.
 
-## Comprobar y compilar
+## Check and build
 
 ```sh
 npm test
 npm run build
 ```
 
-La compilación genera `dist/`. Las pruebas verifican los recursos locales,
-los comandos de la CLI y la coincidencia entre texto visible y portapapeles,
-incluido el caso en que el navegador rechaza la copia.
+The build generates `dist/`. Tests check local assets, CLI commands, and
+whether the clipboard matches the visible text, including the case where
+the browser denies clipboard access.
 
-## Desplegar en Render
+## Deploy on Render
 
-El repositorio incluye un `render.yaml` en la raíz. En Render, crea un
-**Blueprint**, conecta este repositorio y revisa la configuración antes de
-iniciar el despliegue.
+The repository includes `render.yaml` at its root. Create a **Blueprint**
+in Render, connect this repository, and review the configuration before
+deploying.
 
-Para crearlo manualmente como **Static Site**, utiliza:
+To create it manually as a **Static Site**, use:
 
-| Campo | Valor |
+| Field | Value |
 | --- | --- |
 | Build command | `npm run build` |
 | Publish directory | `dist` |
 | Auto-deploy | Off |
 
-No necesita base de datos, secretos ni un servicio PHP. El Blueprint deja
-desactivados los despliegues automáticos; puedes iniciarlos manualmente.
-Un Static Site desplegado en Render tiene una URL accesible por Internet.
-La demo no incluye autenticación: para conservarla exclusivamente en local,
-utiliza `npm start` sin desplegarla.
+No database, secrets, or PHP service are required. Automatic deployments
+are disabled in the Blueprint; deployments can be started manually.
+A static site deployed on Render has an Internet-accessible URL. This demo
+does not include authentication. To keep it local, use `npm start` without
+deploying it.
 
-Referencia: [Blueprint YAML de Render](https://render.com/docs/blueprint-spec).
+Reference: [Render Blueprint YAML](https://render.com/docs/blueprint-spec).
 
-## CLI incluida
+## Included CLI
 
-Extrae `public/downloads/nexo-demo-0.1.0.zip` y, desde su carpeta, ejecuta:
+Extract `public/downloads/nexo-demo-0.1.0.zip` and run these commands from
+its folder:
 
 ```sh
 node nexo.mjs --version
@@ -65,30 +66,30 @@ node nexo.mjs demo
 node nexo.mjs --help
 ```
 
-La CLI imprime datos del runtime y ejemplos. No modifica archivos,
-instala dependencias, ejecuta procesos secundarios ni realiza conexiones
-de red. El playground muestra una salida ilustrativa dentro del navegador.
+The CLI prints runtime information and examples. It does not modify files,
+install dependencies, run subprocesses, or make network connections.
+The playground displays illustrative output inside the browser.
 
-## Estructura
+## Structure
 
 ```text
 public/
   index.html
-  assets/        # Estilos, interacciones e icono
-  downloads/     # CLI, instrucciones y ZIP
+  assets/        # Styles, interactions, and icon
+  downloads/     # CLI, README.txt, and ZIP
 scripts/
-  build.mjs      # Genera dist/
-  serve.mjs      # Servidor local
+  build.mjs      # Generates dist/
+  serve.mjs      # Local server
 tests/
   platform.test.mjs
 render.yaml
 ```
 
-Los comandos se editan en los bloques visibles de `public/index.html`.
-Cada botón `data-copy-target` lee el `textContent` del bloque correspondiente.
-No se incluyen campos de copia oculta, alternancia de comandos ni descargas
-activadas por copiar.
+Edit commands in the visible blocks in `public/index.html`.
+Each `data-copy-target` button reads `textContent` from its corresponding
+block. There are no hidden clipboard payloads, alternating commands,
+or downloads triggered by copying.
 
-El progreso y las preferencias se guardan en `localStorage`, con la clave
-`nexo.demo.preferences.v1`. No se incorpora analítica ni se envía información
-del visitante desde el código de la demo.
+Progress and preferences are saved in `localStorage` under
+`nexo.demo.preferences.v1`. The demo code does not include analytics or
+send visitor information to an external service.
