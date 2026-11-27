@@ -27,6 +27,12 @@
     <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 4 12 8-12 8Z"/></symbol>
     <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 6-6 6 6 6m8-12 6 6-6 6M14 3l-4 18"/></symbol>
     <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 3 6v6c0 5 9 9 9 9s9-4 9-9V6l-9-3Z"/><path d="m8 12 3 3 5-6"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24"><path d="m21 2-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.78 7.78 5.5 5.5 0 0 1 7.78-7.78Zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 4"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></symbol>
   </defs></svg>
 
   <aside class="sidebar" id="sidebar" aria-label="Main navigation">
@@ -36,6 +42,9 @@
     <nav>
       <a class="nav-item active" href="#inicio" data-nav="inicio" aria-current="page"><svg><use href="#i-grid"/></svg>Overview</a>
       <a class="nav-item" href="#instalacion" data-nav="instalacion"><svg><use href="#i-download"/></svg>Installation<span class="nav-tag">CLI</span></a>
+      <a class="nav-item" href="#equipo" data-nav="equipo"><svg><use href="#i-users"/></svg>Team<span class="nav-tag">NEW</span></a>
+      <a class="nav-item" href="#integraciones" data-nav="integraciones"><svg><use href="#i-link"/></svg>Integrations</a>
+      <a class="nav-item" href="#deploy" data-nav="deploy"><svg><use href="#i-cloud"/></svg>Deploy</a>
       <button class="nav-item" data-open="playground"><svg><use href="#i-terminal"/></svg>Playground</button>
     </nav>
     <p class="nav-label resources-label">RESOURCES</p>
@@ -92,6 +101,77 @@
           <div class="try-card"><span class="try-icon"><svg><use href="#i-code"/></svg></span><h3>Try an idea first.</h3><p>Explore the CLI output in the playground, right here.</p><button class="button secondary" data-open="playground"><svg><use href="#i-play"/></svg>Open playground</button><small>Interactive browser simulation</small></div>
           <button class="help-link" data-open="docs"><svg><use href="#i-book"/></svg><span>New to the command line?<small>We have a guide for that.</small></span><span>+</span></button>
         </aside>
+      </section>
+
+      <!-- Team -->
+      <div class="section-heading" id="equipo"><div><span class="section-kicker">COLLABORATION</span><h2>Build together.</h2><p>Invite your team, assign roles, and share your workspace.</p></div><span class="outline-badge"><svg><use href="#i-users"/></svg>Up to 25 members</span></div>
+      <section class="feature-section" aria-label="Team setup">
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-card-header"><svg><use href="#i-mail"/></svg><h3>Invite by email</h3></div>
+            <p>Add team members by sending an invite to their work email. They'll get access to the shared workspace and all project resources immediately.</p>
+            <div class="command-block"><div class="command-label"><span class="shell-name">CLI</span><button class="copy-button" data-copy-target="cmd-invite"><svg><use href="#i-copy"/></svg><span>Copy</span></button></div><pre><code id="cmd-invite">nexo team invite user@company.com --role developer</code></pre></div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card-header"><svg><use href="#i-shield"/></svg><h3>Roles &amp; permissions</h3></div>
+            <p>Control access with three built-in roles: <strong>Admin</strong> (full control, billing, team management), <strong>Developer</strong> (read/write on projects, deploy access), and <strong>Viewer</strong> (read-only, dashboards).</p>
+            <div class="command-block"><div class="command-label"><span class="shell-name">CLI</span><button class="copy-button" data-copy-target="cmd-roles"><svg><use href="#i-copy"/></svg><span>Copy</span></button></div><pre><code id="cmd-roles">nexo team roles --list</code></pre></div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card-header"><svg><use href="#i-key"/></svg><h3>SSH keys &amp; tokens</h3></div>
+            <p>Each team member can register their SSH public key or generate a personal access token for CLI authentication and Git operations.</p>
+            <div class="command-block"><div class="command-label"><span class="shell-name">CLI</span><button class="copy-button" data-copy-target="cmd-ssh"><svg><use href="#i-copy"/></svg><span>Copy</span></button></div><pre><code id="cmd-ssh">nexo auth add-key ~/.ssh/id_ed25519.pub</code></pre></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Integrations -->
+      <div class="section-heading" id="integraciones"><div><span class="section-kicker">CONNECT</span><h2>Integrations that work.</h2><p>Connect your tools and automate your workflow.</p></div><span class="outline-badge"><svg><use href="#i-link"/></svg>6 integrations</span></div>
+      <section class="feature-section" aria-label="Integrations">
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-card-header"><svg><use href="#i-github"/></svg><h3>GitHub</h3></div>
+            <p>Connect your GitHub account to sync repositories, enable automatic pull request previews, and trigger CI/CD pipelines on every push.</p>
+            <div class="command-block"><div class="command-label"><span class="shell-name">CLI</span><button class="copy-button" data-copy-target="cmd-github"><svg><use href="#i-copy"/></svg><span>Copy</span></button></div><pre><code id="cmd-github">nexo integrate github --org your-org --token ghp_xxxxxxxxxxxx</code></pre></div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card-header"><svg><use href="#i-box"/></svg><h3>npm Registry</h3></div>
+            <p>Publish packages to a private npm registry scoped to your workspace. Manage versions, access controls, and audit logs from one place.</p>
+            <div class="command-block"><div class="command-label"><span class="shell-name">CLI</span><button class="copy-button" data-copy-target="cmd-npm"><svg><use href="#i-copy"/></svg><span>Copy</span></button></div><pre><code id="cmd-npm">nexo registry publish --scope @my-team --access restricted</code></pre></div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card-header"><svg><use href="#i-key"/></svg><h3>API keys</h3></div>
+            <p>Generate and rotate API keys for external services. Keys are scoped per environment (development, staging, production) and can be revoked at any time.</p>
+            <div class="command-block"><div class="command-label"><span class="shell-name">CLI</span><button class="copy-button" data-copy-target="cmd-apikey"><svg><use href="#i-copy"/></svg><span>Copy</span></button></div><pre><code id="cmd-apikey">nexo keys generate --env production --name "CI Pipeline"</code></pre></div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card-header"><svg><use href="#i-settings"/></svg><h3>Webhooks</h3></div>
+            <p>Set up webhooks to notify Slack, Discord, or any HTTP endpoint on deployment events, failed builds, and security alerts.</p>
+            <div class="command-block"><div class="command-label"><span class="shell-name">CLI</span><button class="copy-button" data-copy-target="cmd-webhook"><svg><use href="#i-copy"/></svg><span>Copy</span></button></div><pre><code id="cmd-webhook">nexo webhooks add https://hooks.slack.com/services/T00/B00/xxx --events deploy,fail</code></pre></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Deploy -->
+      <div class="section-heading" id="deploy"><div><span class="section-kicker">SHIP IT</span><h2>Deploy anywhere.</h2><p>Push your project to production in one command.</p></div><span class="outline-badge"><svg><use href="#i-cloud"/></svg>3 providers</span></div>
+      <section class="feature-section" aria-label="Deploy">
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-card-header"><svg><use href="#i-cloud"/></svg><h3>Cloud deploy</h3></div>
+            <p>Deploy to Vercel, Render, or AWS with zero configuration. Nexo detects your framework, builds the project, and ships it.</p>
+            <div class="command-block"><div class="command-label"><span class="shell-name">CLI</span><button class="copy-button" data-copy-target="cmd-deploy"><svg><use href="#i-copy"/></svg><span>Copy</span></button></div><pre><code id="cmd-deploy">nexo deploy --provider vercel --env production</code></pre></div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card-header"><svg><use href="#i-settings"/></svg><h3>Environment variables</h3></div>
+            <p>Manage secrets and config per environment. Variables are encrypted at rest and injected at build time. Never commit <code>.env</code> files again.</p>
+            <div class="command-block"><div class="command-label"><span class="shell-name">CLI</span><button class="copy-button" data-copy-target="cmd-env"><svg><use href="#i-copy"/></svg><span>Copy</span></button></div><pre><code id="cmd-env">nexo env set DATABASE_URL "postgres://user:pass@host/db" --env production</code></pre></div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card-header"><svg><use href="#i-code"/></svg><h3>CI/CD pipelines</h3></div>
+            <p>Auto-generate GitHub Actions workflows or GitLab CI configs. Run tests, lint, build, and deploy on every merge to main.</p>
+            <div class="command-block"><div class="command-label"><span class="shell-name">CLI</span><button class="copy-button" data-copy-target="cmd-cicd"><svg><use href="#i-copy"/></svg><span>Copy</span></button></div><pre><code id="cmd-cicd">nexo ci init --provider github-actions --test --lint --deploy</code></pre></div>
+          </div>
+        </div>
       </section>
 
       <section class="principles" aria-label="The Nexo approach"><article><span class="principle-icon"><svg><use href="#i-terminal"/></svg></span><div><h3>From your terminal</h3><p>Short commands with clear, readable output.</p></div></article><article><span class="principle-icon"><svg><use href="#i-code"/></svg></span><div><h3>Open to explore</h3><p>Read the demo code and make it your own.</p></div></article><article><span class="principle-icon"><svg><use href="#i-box"/></svg></span><div><h3>Lightweight by design</h3><p>One file. No extra packages.</p></div></article></section>
