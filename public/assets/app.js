@@ -127,16 +127,13 @@ function selectExample(name) {
   $('#playground-output').textContent = 'Your terminal is ready. Run an example to get started.';
 }
 const searchItems = [
-  { title: 'Download Nexo', description: 'Portable kit and demo source code', keywords: 'download zip program cli source', step: 0 },
+  { title: 'Download Nexo', description: 'Portable kit and source code', keywords: 'download zip program cli source', step: 0 },
   { title: 'Set up and check the version', description: 'Extract the ZIP and open your terminal', keywords: 'installation install setup node windows macos linux version', step: 1 },
   { title: 'Check your environment', description: 'Explore the doctor command', keywords: 'doctor diagnostics environment node', step: 2 },
   { title: 'Run the demo', description: 'Your first Nexo command', keywords: 'demo run project command', step: 3 },
   { title: 'Playground', description: 'Try examples in your browser', keywords: 'simulation terminal example', dialog: 'playground' },
   { title: 'Quick guide', description: 'Help, requirements, and troubleshooting', keywords: 'help documentation requirements error uninstall', dialog: 'docs' },
   { title: 'Preferences', description: 'Line wrapping, motion, and clipboard', keywords: 'settings preferences clipboard copy progress', dialog: 'settings' },
-  { title: 'Team setup', description: 'Invite members, roles, and SSH keys', keywords: 'team invite email roles admin developer viewer ssh tokens collaboration', section: 'equipo' },
-  { title: 'Integrations', description: 'GitHub, npm, API keys, and webhooks', keywords: 'integrations github npm registry api keys webhooks slack discord connect', section: 'integraciones' },
-  { title: 'Deploy', description: 'Cloud deploy, env variables, and CI/CD', keywords: 'deploy vercel render aws production environment variables cicd pipeline github actions', section: 'deploy' },
 ];
 const normalized = text => text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 function renderSearch(query) {
@@ -157,7 +154,6 @@ function renderSearch(query) {
     button.addEventListener('click', () => {
       $('#dialog-search').close();
       if (item.dialog) openDialog(item.dialog);
-      else if (item.section) { location.hash = item.section; }
       else { openStep(item.step); location.hash = 'instalacion'; $(`.step[data-step="${item.step}"] .step-heading`).focus({ preventScroll: true }); }
     });
     root.append(button);
@@ -223,16 +219,14 @@ document.addEventListener('keydown', event => {
   }
   if (event.key === 'Escape') closeSidebar();
 });
-const navLabels = { inicio: 'Overview', instalacion: 'Installation', equipo: 'Team', integraciones: 'Integrations', deploy: 'Deploy' };
 function updateNavigation() {
-  const hash = location.hash.replace('#', '');
-  const current = navLabels[hash] ? hash : 'inicio';
+  const current = location.hash === '#instalacion' ? 'instalacion' : 'inicio';
   $$('[data-nav]').forEach(link => {
     const active = link.dataset.nav === current;
     link.classList.toggle('active', active);
     if (active) link.setAttribute('aria-current', 'page'); else link.removeAttribute('aria-current');
   });
-  $('#breadcrumb-current').textContent = navLabels[current];
+  $('#breadcrumb-current').textContent = current === 'instalacion' ? 'Installation' : 'Overview';
 }
 window.addEventListener('hashchange', updateNavigation);
 applySettings(); setOS(state.os); updateProgress(); updateNavigation();
